@@ -30,23 +30,25 @@ const observer = new IntersectionObserver(
 );
 revealEls.forEach((el) => observer.observe(el));
 
-// WhatsApp contact form
+// WhatsApp contact form (only present on the homepage)
 const WHATSAPP_NUMBER = '51974471418';
 const form = document.getElementById('contact-form');
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
+if (form) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  const name = form.name.value.trim();
-  const experience = form.experience.value;
-  const date = form.date.value;
-  const message = form.message.value.trim();
+    const name = form.name.value.trim();
+    const experience = form.experience.value;
+    const date = form.date.value;
+    const message = form.message.value.trim();
 
-  let text = `Hola Hampi Sacha, soy ${name}.`;
-  text += ` Me interesa: ${experience}.`;
-  if (date) text += ` Fecha tentativa: ${date}.`;
-  if (message) text += ` ${message}`;
+    let text = `Hola Hampi Sacha, soy ${name}.`;
+    text += ` Me interesa: ${experience}.`;
+    if (date) text += ` Fecha tentativa: ${date}.`;
+    if (message) text += ` ${message}`;
 
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-  window.open(url, '_blank', 'noopener');
-});
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank', 'noopener');
+  });
+}
